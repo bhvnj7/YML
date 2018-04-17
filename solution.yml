@@ -1,0 +1,28 @@
+---
+- hosts: servers
+  gather_facts: false
+  tasks:
+    - group:
+        name: food
+        state: present
+    - user:
+        name: enchilada
+        state: present
+        comment: this is enchilada
+        group: food
+    - group:
+        name: redhat
+        state: present
+        gid: 1500
+    - user:
+        name: redhat
+        state: present
+        uid: 1500
+        group: 1500
+    - name: Create Dir
+      file: 
+        path: /data/project/RHT
+        state: directory
+        owner: redhat
+        group: redhat
+
